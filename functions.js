@@ -54,12 +54,91 @@ const printSuperMarioNames = function () {
 }
 
 printSuperMarioNames() // questa è l'esecuzione
+// console.log(favouriteCharacter) // favouriteCharacter non è disponibile al di fuori di printSuperMarioNames()
 
-console.log(favouriteCharacter)
 // le variabili definite con LET e CONST hanno visibilità di BLOCCO
 
-if (favouriteCharacter) {
-  const greeting = 'Ciao'
+// console.log(greeting) // undefined
+
+// PARAMETRI DELLE FUNZIONI (dati in input)
+
+const sumOfTwoValues = function () {
+  // questa funzione eseguirà la somma di due numeri
+  const n1 = 5
+  const n2 = 8
+  const sum = n1 + n2 // 13
+  console.log('La somma di n1 e n2 è', sum)
 }
 
-// console.log(greeting) // undefined
+sumOfTwoValues()
+
+const sumOfTwoValuesAgain = function () {
+  // questa funzione eseguirà la somma di due numeri
+  const n1 = 6
+  const n2 = 9
+  const sum = n1 + n2 // 13
+  console.log('La somma di n1 e n2 è', sum)
+}
+
+// fornire una funzione di parametri la rende, genericamente, PIÙ RIUTILIZZABILE
+
+const sumOfTwoGenericValues = function (n1, n2) {
+  const sum = n1 + n2
+  console.log('La somma di n1 e n2 è', sum)
+}
+
+sumOfTwoGenericValues(3, 10) // n1 è 3, n2 è 10
+sumOfTwoGenericValues(4, 12) // n1 è 4, n2 è 12
+sumOfTwoGenericValues(40, 1) // n1 è 40, n2 è 1
+
+// altro esempio
+const players = ['claudia', 'jacopo', 'giulio', 'tommaso']
+
+// creiamo una funzione
+
+const replacePlayer = function () {
+  // L'allenatore, Mario, decide che sostituire un giocatore
+  const substitution = 'giovanni'
+  // effettuate la sostituzione di Giulio
+  players.splice(2, 1, substitution)
+  console.log(players)
+}
+
+// invochiamo replacePlayer() per eseguirla
+// replacePlayer()
+// funziona! però sa sostituire sempre e comunque solo Giulio...
+// ...creiamo una variante in grado di sostituire un giocatore a scelta, non sempre Giulio!
+
+const replaceGenericPlayer = function (indexToReplace, newPlayer) {
+  console.log(
+    'controllo che il primo parametro sia un numero e il secondo una stringa...'
+  )
+  if (typeof indexToReplace === 'number' && typeof newPlayer === 'string') {
+    console.log('ok! eseguo la sostituzione')
+    players.splice(indexToReplace, 1, newPlayer)
+    console.log(players)
+  } else {
+    console.log('non hai passato correttamente i parametri')
+  }
+}
+
+// replaceGenericPlayer(1)
+replaceGenericPlayer(3, 'kassandra')
+// replaceGenericPlayer('kassandra', 3)
+
+// le parole arancioni alla riga 112 si chiamano "PARAMETRI" della funzione
+// sono dei nomi generici, di vostra fantasia (seguite la nomenclatura classica delle variabili)
+// che rappresentano un placeholder del dato che verrà passato
+
+// poi, i dati che passate all'invocazione della funzione, quindi es. riga 127 'kassandra' o il numero 3
+// quelli vengono definiti ARGOMENTO dell'invocazione della funzione
+
+const printCurrentYear = function (year = 2024) {
+  console.log('Adesso siamo nel', year)
+}
+
+printCurrentYear(1999)
+printCurrentYear(2004)
+printCurrentYear() // <-- senza argomento per "year"
+// in caso di mancata assegnazione di un parametro, è possibile "istruire" la funzione ad utilizzare un valore di
+// rimpiazzo, un valore di "default". Lo si può passare direttamente assegnando il parametro nella funzione ad un valore

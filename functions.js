@@ -142,3 +142,56 @@ printCurrentYear(2004)
 printCurrentYear() // <-- senza argomento per "year"
 // in caso di mancata assegnazione di un parametro, è possibile "istruire" la funzione ad utilizzare un valore di
 // rimpiazzo, un valore di "default". Lo si può passare direttamente assegnando il parametro nella funzione ad un valore
+
+// IL VALORE DI RITORNO
+// una funzione PUÒ avere un valore di ritorno
+// solitamente rappresenta il risultato di un'operazione, o il totale di una somma, una stringa ottenuta concatenando parti etc.
+
+// per ritornare un valore esiste una diretta chiamata "return"
+// se una funzione possiede un valore di ritorno, è possibile "trattare" l'esecuzione della funzione come il valore di ritorno stesso
+
+const sumOfTwoNumbers = function (num1, num2) {
+  const result = num1 + num2
+  // result è disponibile solo qui dentro!
+  return result
+}
+
+const resultOfTheFunctionExecution = sumOfTwoNumbers(45, 67) // vale 112
+console.log(resultOfTheFunctionExecution)
+
+console.log(typeof sumOfTwoNumbers(2, 3))
+
+const sumValuesFromArray = function (arrayOfNumbers) {
+  let tempResult = 0
+  for (let i = 0; i < arrayOfNumbers.length; i++) {
+    tempResult += arrayOfNumbers[i]
+  }
+  // tempResult è stato calcolato! 138
+  return tempResult
+  console.log('finito') // non vedrò mai questo console.log! l'istruzione return TERMINA l'esecuzione della funzione
+}
+
+const result = sumValuesFromArray([4, 45, 89])
+console.log(result) // 138!!! era il valore tornato
+
+// altro esempio
+const greetStudent = function (nameOfAStudent) {
+  const firstTwoCharacters = nameOfAStudent.slice(0, 2)
+
+  return 'Ciao ' + firstTwoCharacters
+}
+
+console.log(greetStudent('Stefano')) // 'Ciao, St'
+
+// Funzioni freccia: una funzione scritta su una sola riga, senza le graffe e con un valore di ritorno implicito
+const firstArrowFunction = (firstName) => 'Ciao, ' + firstName
+console.log(firstArrowFunction('Tommaso'))
+
+const teacher = 'Stefano'
+const currentYear = new Date().getFullYear() // 2024
+
+const school = `${teacher} insegna in EPICODE nel ${currentYear}`
+const school2 = teacher + ' insegna in EPICODE nel ' + currentYear
+
+const str1 = '   ciao'
+console.log(str1.trim().slice(0, 2).toUpperCase())
